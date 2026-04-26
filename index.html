@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Wkrótce</title>
 
 <style>
@@ -10,27 +10,36 @@
         margin: 0;
         height: 100vh;
         background: black;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
         display: flex;
-        flex-direction: column;
         justify-content: center;
         align-items: center;
-        font-family: Arial, sans-serif;
-        overflow: hidden;
+        flex-direction: column;
+        color: white;
+    }
+
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
     }
 
     .text {
         font-size: 80px;
         font-weight: 900;
-        text-transform: uppercase;
+        z-index: 1;
         animation: shake 3s infinite ease-in-out, rainbow 5s infinite linear;
+        text-transform: uppercase;
     }
 
     @keyframes shake {
-        0% { transform: translate(0, 0); }
-        25% { transform: translate(2px, -2px); }
-        50% { transform: translate(-2px, 2px); }
-        75% { transform: translate(2px, 2px); }
-        100% { transform: translate(0, 0); }
+        0% { transform: translate(0,0); }
+        25% { transform: translate(2px,-2px); }
+        50% { transform: translate(-2px,2px); }
+        75% { transform: translate(2px,2px); }
+        100% { transform: translate(0,0); }
     }
 
     @keyframes rainbow {
@@ -43,16 +52,15 @@
     }
 
     .button {
-        margin-top: 40px;
+        margin-top: 30px;
         padding: 15px 30px;
         font-size: 20px;
         font-weight: bold;
         color: white;
         background: #5865F2;
-        border: none;
         border-radius: 10px;
-        cursor: pointer;
         text-decoration: none;
+        z-index: 1;
         transition: 0.2s;
     }
 
@@ -60,17 +68,12 @@
         transform: scale(1.1);
         background: #4752c4;
     }
-
-    .small {
-        position: absolute;
-        bottom: 20px;
-        color: gray;
-        font-size: 14px;
-    }
 </style>
 </head>
 
 <body>
+
+<canvas id="matrix"></canvas>
 
 <div class="text">WKRÓTCE</div>
 
@@ -78,7 +81,92 @@
     DOŁĄCZ NA SERWER
 </a>
 
-<div class="small">© 2026</div>
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
 
-</body>
-</html>
+<script>
+<script>
+// ===== MUSIC =====
+const audio = document.getElementById("bgMusic");
+
+function startMusic() {
+    audio.volume = 0.45;
+    audio.play().catch(() => {});
+}
+
+document.body.addEventListener("click", startMusic);
+window.addEventListener("load", startMusic);
+
+// ===== LEAVES EFFECT =====
+const canvas = document.createElement("canvas");
+document.body.appendChild(canvas);
+const ctx = canvas.getContext("2d");
+
+canvas.style.position = "fixed";
+canvas.style.top = "0";
+canvas.style.left = "0";
+canvas.style.zIndex = "0";
+canvas.style.pointerEvents = "none";
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+// Twoje obrazki liści
+const leafImagesSrc = ["leaves/1.png", "leaves/2.png"];
+const leafImages = [];
+
+leafImagesSrc.forEach(src => {
+    const img = new Image();
+    img.src = src;
+    leafImages.push(img);
+});
+
+const leaves = [];
+
+function createLeaf() {
+    return {
+        x: Math.random() * canvas.width,
+        y: -50,
+        speed: 1 + Math.random() * 2.5,
+        size: 20 + Math.random() * 40,
+        img: leafImages[Math.floor(Math.random() * leafImages.length)],
+        drift: (Math.random() - 0.5) * 2
+    };
+}
+
+// startowa ilość
+for (let i = 0; i < 40; i++) {
+    leaves.push(createLeaf());
+}
+
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < leaves.length; i++) {
+        const l = leaves[i];
+
+        l.y += l.speed;
+        l.x += l.drift;
+
+        // reset jak spadnie
+        if (l.y > canvas.height + 50) {
+            leaves[i] = createLeaf();
+            leaves[i].y = -50;
+        }
+
+        // rysowanie
+        if (l.img.complete) {
+            ctx.drawImage(l.img, l.x, l.y, l.size, l.size);
+        }
+    }
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+</script>
