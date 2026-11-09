@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="pl" data-theme="dark"> <head>
+<html lang="pl" data-theme="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WyspaMonyka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Tiny5+Duo:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <nav class="navbar">
-        <div class="logo" id="dynamicLogo">WyspaMonyka</div>
-        
+        <a class="logo" id="dynamicLogo" href="#" aria-label="WyspaMonyka — strona główna">
+            <span>WyspaMonyka</span><span class="logo-laptop" aria-label="Laptop">💻</span>
+        </a>
+
         <div class="nav-links">
             <a href="#">Strona Główna</a>
             <a href="#informacje">Informacje</a>
@@ -18,12 +23,12 @@
         </div>
 
         <div class="theme-switch-wrapper">
-            <label class="theme-switch" for="checkbox">
-                <input type="checkbox" id="checkbox" checked />
-                <div class="slider">
+            <label class="theme-switch" for="checkbox" aria-label="Przełącz motyw">
+                <input type="checkbox" id="checkbox" checked>
+                <span class="slider">
                     <span class="icon sun">☀️</span>
                     <span class="icon moon">🌙</span>
-                </div>
+                </span>
             </label>
         </div>
     </nav>
@@ -38,10 +43,10 @@
     <section class="social-bar">
         <h3>Social Media</h3>
         <div class="social-links">
-            <a href="https://www.tiktok.com/@monyk_pl" target="_blank"><i class="fa-brands fa-tiktok"></i> Tiktok: monyk_pl</a>
-            <a href="https://www.youtube.com/@monyk_PL" target="_blank"><i class="fa-brands fa-youtube"></i> Youtube: monyk_PL</a>
-            <a href="https://github.com/monykPL" target="_blank"><i class="fa-brands fa-github"></i> Github: monykPL</a>
-            <a href="https://discord.gg/SkYXfepYH" target="_blank"><i class="fa-brands fa-discord"></i> Serwer Discord</a>
+            <a href="https://www.tiktok.com/@monyk_pl" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i> TikTok: monyk_pl</a>
+            <a href="https://www.youtube.com/@monyk_PL" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i> YouTube: monyk_PL</a>
+            <a href="https://github.com/monykPL" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub: monykPL</a>
+            <a href="https://discord.gg/SkYXfepYH" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i> Serwer Discord</a>
         </div>
     </section>
 
@@ -57,19 +62,44 @@
     <section id="dziela" class="works-section">
         <div class="container">
             <h2>Dzieła</h2>
-            
+
             <div class="work-item">
                 <p>
-                    1. <a href="https://monykpl.github.io/barka-licznik/" target="_blank" class="work-link">Licznik Papieskiej</a> - Strona gdzie jest licznik do godziny 21:37 z czatem i trybem imprezowym gdzie czat się resetuje co godzinę a impreza podczas barki robi migające światło więc osoby z epilepsją nie odpalać tego oraz jak wybije ta godzina 21:37 tło zmienia się z szarego na żółte i leci konfetti po bokach ekranu a w tle leci barka remix wykop pl po tej piosence tło zmienia na szare z powrotem i znika konfetti robi następnego dnia jak wybije 21:37 to samo.
+                    1. <a href="https://monykpl.github.io/barka-licznik/" target="_blank" rel="noopener noreferrer" class="work-link">Licznik Papieskiej</a> - Strona gdzie jest licznik do godziny 21:37 z czatem i trybem imprezowym gdzie czat się resetuje co godzinę a impreza podczas barki robi migające światło więc osoby z epilepsją nie odpalać tego oraz jak wybije ta godzina 21:37 tło zmienia się z szarego na żółte i leci konfetti po bokach ekranu a w tle leci barka remix wykop pl po tej piosence tło zmienia na szare z powrotem i znika konfetti robi następnego dnia jak wybije 21:37 to samo.
                 </p>
             </div>
 
             <div class="work-item">
                 <p>
-                    2. <a href="https://monykpl.github.io/MelonClient/" target="_blank" class="work-link">MelonClient</a> - Strona mojego własnego clienta minecraft MelonClient jest w fazie Beta ale da się korzystać z niego staram się go optymalizować najmocniej jak mogę żeby był najlepszym darmowym clientem pod FPS próbuje wyścignąć innych ale nie wiem czy mi się uda jeśli chcecie mnie wesprzeć możecie wejść na serwer discord który znajdzecie w zakładce "Social Media"
+                    2. <a href="https://monykpl.github.io/MelonClient/" target="_blank" rel="noopener noreferrer" class="work-link">MelonClient</a>
+                    <span class="status-wrap">
+                        <span class="status-icon" tabindex="0" aria-label="Projekt chwilowo niedostępny"><i class="fa-solid fa-xmark"></i></span>
+                        <span class="status-tooltip" role="tooltip">nie działa są przerwy techniczne. Przepraszamy za problemy. ale i tak chyba usunę ten projekt bądź ciekawy</span>
+                    </span>
+                    - Strona mojego własnego clienta minecraft MelonClient jest w fazie Beta ale da się korzystać z niego staram się go optymalizować najmocniej jak mogę żeby był najlepszym darmowym clientem pod FPS próbuje wyścignąć innych ale nie wiem czy mi się uda jeśli chcecie mnie wesprzeć możecie wejść na serwer discord który znajdzecie w zakładce "Social Media"
                 </p>
             </div>
 
+            <article class="work-item sticky-notes-work" id="stickyNotesWork" hidden>
+                <div class="sticky-work-top">
+                    <label class="work-select">
+                        <input type="checkbox" id="stickyNotesSelected">
+                        <span>Zaznacz dzieło</span>
+                    </label>
+                    <span class="work-availability">Nowe dzieło</span>
+                </div>
+                <p>
+                    3. <a href="https://monykpl.github.io/Sticky-Notes/" target="_blank" rel="noopener noreferrer" class="work-link">Sticky Notes</a>
+                    - Alternatywa dla Notatnika i Sticky Notes od Microsoftu. Oferuje lepsze funkcje i dopracowanie, mniejsze zużycie RAM-u i innych zasobów oraz możliwość dostosowania części opcji. Nie wszystkie funkcje personalizacji są jeszcze dostępne, ponieważ aplikacja jest w fazie alpha. Mogą występować błędy — zgłaszaj je na serwerze Discord (link w moich socialach na stronie). Więcej informacji znajdziesz na stronie aplikacji.
+                </p>
+            </article>
+
+            <div class="release-area">
+                <button class="release-button" id="stickyReleaseButton" type="button" disabled>
+                    <span id="releaseLabel">Wkrótce:</span>
+                    <span id="releaseCountdown" aria-live="polite">24:00:00</span>
+                </button>
+            </div>
         </div>
     </section>
 
